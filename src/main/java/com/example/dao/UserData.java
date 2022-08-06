@@ -35,4 +35,13 @@ public class UserData {
     public void setUserPassWord(String userPassWord) {
         this.userPassWord = userPassWord;
     }
+
+    @Override
+    public String toString() {
+        return "UserData{" +
+                "web='" + web + '\'' +
+                ", userId='" + userId + '\'' +
+                ", userPassWord='" + userPassWord + '\'' +
+                '}';
+    }
 }

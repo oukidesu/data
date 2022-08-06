@@ -44,4 +44,16 @@ public class PassWordService {
         else return false;
     }
 
+    // 数据恢复
+    public boolean deleteReload(String web) {
+        if (passWord.selectDelete(web) != null) {
+            return passWord.deleteReload(web) > 0;
+        }
+        return false;
+    }
+
+    // 查询删除数据
+    public UserData selectDelete(){
+        return passWord.selectDeleteAll();
+    }
 }

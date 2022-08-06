@@ -20,4 +20,9 @@ class PassWordApplicationTests {
     void deleteTest() {
         System.out.println(passWordController.deleteData("test"));
     }
+
+    @Test
+    void deleteReload() {
+        System.out.println(passWordController.deleteReload("test"));
+    }
 }

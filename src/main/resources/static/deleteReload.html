@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据恢复</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function() {
+            $("button:eq(0)").click(function() {
+                $("#reset-button").empty();
+                $.ajax({
+                    type: "get",
+                    url: "/reload",
+                    dataType:"json",
+                    data: {"web":$("#web").val()},
+                    success: function(data) {
+                        if (data){
+                            alert("数据恢复成功，请前往查询页面查询");
+                        }
+                        else {
+                            alert("数据恢复失败，请重试");
+                        }
+                    },
+                    error: function() {
+                        alert("未知错误");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+   <div align="center">
+       web:<input type="text" name="web" id="web" >
+       <button id="button" value="确认">确认</button>
+       <a href="index.html">
+           <button>
+               返回
+           </button>
+       </a>
+   </div>
+</body>
+</html>

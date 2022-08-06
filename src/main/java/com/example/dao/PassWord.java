@@ -27,4 +27,23 @@ public interface PassWord {
 
     @Update("UPDATE myPassword SET delete_flg = 1 WHERE web = #{web}")
     int deleteDate(String web);
+
+    @Update("UPDATE myPassword SET delete_flg = 0 WHERE web = #{web}")
+    int deleteReload(String web);
+
+    @Select("SELECT * FROM myPassword WHERE web = #{web} AND delete_flg = 1")
+    @Results({
+            @Result(column = "web",property = "web"),
+            @Result(column = "user_id",property = "userId"),
+            @Result(column = "user_password",property = "userPassWord")
+    })
+    UserData selectDelete(String web);
+
+    @Select("SELECT * FROM myPassword WHERE delete_flg = 1")
+    @Results({
+            @Result(column = "web",property = "web"),
+            @Result(column = "user_id",property = "userId"),
+            @Result(column = "user_password",property = "userPassWord")
+    })
+    UserData selectDeleteAll();
 }

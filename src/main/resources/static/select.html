@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询账号密码</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function() {
+            $("button:eq(0)").click(function() {
+                $("#reset-button").empty();
+                $.ajax({
+                    type: "get",
+                    url: "/select",
+                    dataType:"json",
+                    data: {"web":$("#web").val()},
+                    success: function(data) {
+                        $("#reset-button").append("<li>web-userId-userPassWord</li>");
+                        $("#reset-button").append("<li>" + data.web + "-" + data.userId + "-" + data.userPassWord + "</li>");
+                    },
+                    error: function() {
+                        $("#reset-button").empty();
+                        alert("未检索到数据");
+                    }
+                });
+            });
+            $("button:eq(1)").click(function () {
+                $("#reset-button").empty();
+                $.ajax({
+                    type: "get",
+                    url: "/selectall",
+                    dataType: "json",
+                    success: function (data) {
+                        $("#reset-button").append("<li>web-userId-userPassWord</li>");
+                        $.each(data,function (index,user) {
+                            $("#reset-button").append("<li>" + user.web + "-" + user.userId + "-" + user.userPassWord + "</li>");
+                        })
+                    }
+                })
+            })
+        });
+    </script>
+</head>
+<body>
+    web:<input type="text" name="wen=b" id="web" >
+    <button id="button" value="确认">确认</button>
+	<button id="all" value="查询所有信息">查询所有信息</button>
+    <ul id="reset-button"></ul>
+    <a href="index.html">
+        <button>
+            返回
+        </button>
+    </a>
+</body>
+</html>

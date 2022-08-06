@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:margin="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<title>插入账号密码</title>
+		<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+		<script>
+			$(function() {
+				$("button:eq(0)").click(function() {
+					var adata = {
+						"web" : $("#web").val(),
+						"userId" : $("#userId").val(),
+						"userPassWord" : $("#userPassword").val()
+					}
+					console.log(adata);
+					$.ajax({
+						type: "post",
+						url: "/insert",
+						contentType: "application/json;charset=UTF-8",
+						data: JSON.stringify(adata),
+						success: function(data) {
+							$("#userData").empty();
+							$("#content_form").html(data);
+						},
+						error: function() {
+							alert("数据插入失败，数据库可能存在数据或者主键为空");
+						}
+					});
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+	<div align="center">
+		<form action="#" id="userData">
+			<p>网站:<input type="text" name="web" id="web"/></p>
+			<p>用户名:<input type="text" name="userId" id="userId" /></p>
+			<p>密码:<input type="text" name="userPassword" id="userPassword" /></p>
+		</form>
+		<button id="button" >
+			<div id="content_form">确认</div>
+		</button>
+		<a href="index.html">
+			<button>
+				返回
+			</button>
+		</a>
+	</div>
+	</body>
+</html>

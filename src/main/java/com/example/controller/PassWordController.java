@@ -35,4 +35,10 @@ public class PassWordController {
     public List<UserData> userDataSelectAll() {
         return passWordService.userDataSelectAll();
     }
+
+    @ResponseBody
+    @GetMapping("/delete")
+    public boolean deleteData(String web) {
+        return passWordService.deleteData(web);
+    }
 }

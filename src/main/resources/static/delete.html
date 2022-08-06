@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据删除</title>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#button_delete").click(function() {
+                $.ajax({
+                    type: "get",
+                    url: "/delete",
+                    dataType:"json",
+                    data: {"web":$("#delete_data").val()},
+                    success: function(data) {
+                        if (data){
+                            alert("数据逻辑删除成功");
+                        }
+                       else {
+                           alert("数据删除失败");
+                        }
+                    },
+                    error: function() {
+                        alert("系统异常");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+  <div align="center">
+    <form id="delete" action="#">
+      <p>web:<input type="text" name="delete_data" id="delete_data"></p>
+    </form>
+      <button id="button_delete" ><div id="content_form">确认</div></button>
+      <a href="index.html">
+          <button>
+              返回
+          </button>
+      </a>
+  </div>
+</body>
+</html>

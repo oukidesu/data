@@ -34,4 +34,14 @@ public class PassWordService {
         return passWord.selectAll();
     }
 
+    // 数据删除
+    public boolean deleteData(String web) {
+        if (null != passWord.select(web)) {
+            if (null == web)
+                return false;
+            else return passWord.deleteDate(web) > 0;
+        }
+        else return false;
+    }
+
 }
